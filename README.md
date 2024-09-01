@@ -207,4 +207,9 @@ Authentication schemes defined for the API:
 
 TraderAPI@Schwab.com
 
+## Issues
 
+Using "oneOf" caused a circular import in the package, so I used the following command to remove all oneOf's from the swagger file (probably a bad hack but it works):
+```bash
+jq 'walk(if type == "object" then del(.oneOf) else . end)' swagger.json > updated_swagger.json
+```
